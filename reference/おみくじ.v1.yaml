@@ -1,0 +1,44 @@
+openapi: 3.0.0
+info:
+  title: おみくじ
+  version: '1.0'
+  contact:
+    name: 古河 和樹
+  description: おみくじの API
+servers:
+  - url: 'http://localhost:3000'
+tags:
+  - name: おみくじ
+paths:
+  '/omikuji/{omikuji_id}':
+    parameters:
+      - schema:
+          type: string
+        name: omikuji_id
+        in: path
+        required: true
+    get:
+      summary: おみくじの結果を取得する
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  options:
+                    type: array
+                    items:
+                      type: string
+                  resultIndex:
+                    type: integer
+                    minimum: 0
+                required:
+                  - options
+                  - resultIndex
+      operationId: get-omikuji
+      description: おみくじの結果を取得する
+components:
+  schemas: {}
